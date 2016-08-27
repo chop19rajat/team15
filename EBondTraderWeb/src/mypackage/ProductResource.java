@@ -78,6 +78,7 @@ public class ProductResource {
 	@Path("/post")
 	public void ret(String text){
 		System.out.println(text);
+		System.out.println("qqqq");
 	}
 	
 	
