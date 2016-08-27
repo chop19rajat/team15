@@ -79,6 +79,7 @@ public class ProductResource {
 	public void ret(String text){
 		System.out.println(text);
 		System.out.println("qqqq");
+		System.out.println("qaaq");
 	}
 	
 	
