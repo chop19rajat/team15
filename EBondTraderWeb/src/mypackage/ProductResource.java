@@ -16,8 +16,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import ebondtrader.ejb.EBondBeanLocal;
-import ebondtrader.jpa.Bond;
-import ebondtrader.jpa.Products;
 
 
 
@@ -61,16 +59,16 @@ public class ProductResource {
 	}*/
 
 	
-	@GET
-	@Produces("application/json")
-	public List<Products> getProductByName(@QueryParam("filter")@DefaultValue("")String filter){
-		
-		if(bean==null)
-			return null;
-		List<Products> prod = bean.getProductsByName(filter);
-		return prod;
-		
-	}
+//	@GET
+//	@Produces("application/json")
+//	public List<Products> getProductByName(@QueryParam("filter")@DefaultValue("")String filter){
+//		
+//		if(bean==null)
+//			return null;
+//		List<Products> prod = bean.getProductsByName(filter);
+//		return prod;
+//		
+//	}
 	
 	
 	@POST
