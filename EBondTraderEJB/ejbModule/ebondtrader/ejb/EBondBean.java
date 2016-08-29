@@ -81,7 +81,7 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
 		
 	//	entitymanager.close();
 		//emfactory.close();
-						
+		//Rajat Chopra
 	}
 	
 	public void printing(){
