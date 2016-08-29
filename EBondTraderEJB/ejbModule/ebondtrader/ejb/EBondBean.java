@@ -10,8 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ebondtrader.jpa.Bond;
 import ebondtrader.jpa.Categories;
 import ebondtrader.jpa.Products;
+import ebondtrader.jpa.Transaction;
 
 /**
  * Session Bean implementation class EBondBean
@@ -26,6 +28,18 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
     /**
      * Default constructor. 
      */
+	
+	/*@Override
+	public void addBonds(Bond2 b2) {
+		System.out.println("in ebondbean");
+		Bond2 b1=new Bond2(b2.getIsin(),b2.getDescription());
+		System.out.println(b1.getDescription());
+		em.persist(b1);
+		
+	}*/
+
+	
+	
 	public void addCategoriesAndProducts(){
 		
 		
@@ -86,6 +100,39 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
 		return plist;
 		
 	}
+	public void getTransactions(Transaction t){
+		em.persist(t);
+	}
+	
+public List<Bond> getAllBonds(){
+	TypedQuery <Bond>query=em.createQuery("Select p from Bond as p",Bond.class);
+	List<Bond> plist=(List<Bond>) query.getResultList();
+	
+	
+	return plist;
+		
+	}
+//public int getOrderid(){
+//	TypedQuery <Transaction> query=em.createQuery("Select max(orderId) as orderId from Transaction as t) ",Transaction.class);
+//	Transaction plist= (Transaction) query.getResultList();
+//	
+//	
+//	return plist.getOrderId();
+//		
+//	}
+public List<Transaction> getAlltrs(){
+	TypedQuery <Transaction>query=em.createQuery("Select p from Transaction as p",Transaction.class);
+	List<Transaction> plist=(List<Transaction>) query.getResultList();
+	
+	
+	return plist;
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	
@@ -127,11 +174,13 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
         return products;
     }
 
+	
     /**
      * Default constructor. 
      */
     public EBondBean() {
         // TODO Auto-generated constructor stub
     }
+
 
 }

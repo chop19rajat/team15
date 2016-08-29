@@ -18,6 +18,7 @@ import javax.ws.rs.QueryParam;
 import ebondtrader.ejb.EBondBeanLocal;
 import ebondtrader.jpa.Bond;
 import ebondtrader.jpa.Products;
+import ebondtrader.jpa.Transaction;
 
 
 
@@ -61,7 +62,10 @@ public class ProductResource {
 	}*/
 
 	
-	@GET
+	
+	
+	
+/*	@GET
 	@Produces("application/json")
 	public List<Products> getProductByName(@QueryParam("filter")@DefaultValue("")String filter){
 		
@@ -70,15 +74,33 @@ public class ProductResource {
 		List<Products> prod = bean.getProductsByName(filter);
 		return prod;
 		
-	}
+	}*/
 	
 	
-	@POST
+	
+	
+	
+	
+	
+	/*@POST
 	@Consumes("text/plain")
 	@Path("/post")
 	public void ret(String text){
 		System.out.println(text);
-	}
+	}*/
+	
+	
+	/*@POST
+	@Consumes("application/json")
+	@Path("/post")
+	public void retBond(Bond2 b){
+		bean.addBonds(b);
+	//System.out.println(b.getDescription());
+		//return b.Description;
+		
+	}*/
+	
+	
 	
 	
 	/*@GET
@@ -93,6 +115,8 @@ public class ProductResource {
 		
 	}*/
 	
+	
+	
 	@GET
 	@Produces("text/plain")
 	@Path("/{name}/{age}")
@@ -103,14 +127,43 @@ public class ProductResource {
 	}
 	
 	
-	/*@POST
-	@Consumes("text/plain")
-	@Produces("text/plain")
-	public void putText(String content){
-		System.out.println(content);
-		System.out.println("hELLO");
+	@GET
+	@Produces("application/json")
+	public List<Bond> ret1Bond(){
+		List<Bond> blist=bean.getAllBonds();
+		return blist;
+		
 	}
-	*/
+//	@GET
+//	@Produces("application/json")
+//	@Path("/qwert")
+//	public int ret12Bond(){
+//		int blist=bean.getOrderid();
+//		return blist;
+//		
+//	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/transhis")
+	public List<Transaction> retBond(){
+		List<Transaction> blist=bean.getAlltrs();
+		return blist;
+		
+	}
+	
+
+	
+	
+	@POST
+	@Consumes("application/json")
+	@Produces("application/json")
+	@Path("/trans")
+	public void updateHistory(Transaction t1){
+		System.out.println("asdfghjasakjskajskajskajs");
+		bean.getTransactions(t1);
+	}
+	
 	
 
 }
