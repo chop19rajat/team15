@@ -15,6 +15,8 @@ public class Bond implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int bondDuration;
+	@Id
+	private int bondID;
 
 	private float changePrice;
 
@@ -24,12 +26,11 @@ public class Bond implements Serializable {
 
 	private String currency;
 
+	private float currentYield;
+
 	private String fitch;
 
 	private float high;
-
-	@Id
-	private int id;
 
 	private String isin;
 
@@ -51,8 +52,6 @@ public class Bond implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
 
-	private float currentYield;
-
 	public Bond() {
 	}
 
@@ -62,6 +61,14 @@ public class Bond implements Serializable {
 
 	public void setBondDuration(int bondDuration) {
 		this.bondDuration = bondDuration;
+	}
+
+	public int getBondID() {
+		return this.bondID;
+	}
+
+	public void setBondID(int bondID) {
+		this.bondID = bondID;
 	}
 
 	public float getChangePrice() {
@@ -96,6 +103,14 @@ public class Bond implements Serializable {
 		this.currency = currency;
 	}
 
+	public float getCurrentYield() {
+		return this.currentYield;
+	}
+
+	public void setCurrentYield(float currentYield) {
+		this.currentYield = currentYield;
+	}
+
 	public String getFitch() {
 		return this.fitch;
 	}
@@ -110,14 +125,6 @@ public class Bond implements Serializable {
 
 	public void setHigh(float high) {
 		this.high = high;
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getIsin() {
@@ -190,14 +197,6 @@ public class Bond implements Serializable {
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
-	}
-
-	public float getYield() {
-		return this.currentYield;
-	}
-
-	public void setYield(float yield) {
-		this.currentYield = yield;
 	}
 
 }

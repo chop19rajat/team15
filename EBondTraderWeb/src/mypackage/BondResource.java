@@ -17,7 +17,7 @@ import javax.ws.rs.QueryParam;
 
 import ebondtrader.ejb.EBondBeanLocal;
 import ebondtrader.jpa.Bond;
-import ebondtrader.jpa.Products;
+
 import ebondtrader.jpa.Transaction;
 
 
@@ -102,6 +102,27 @@ public class BondResource {
 	}
 
 	
+	@GET
+	@Produces("application/json")
+	@Path("/allBondsByIssuerName")
+	public List<Bond> getBondByIssuer(@QueryParam("issuerName")@DefaultValue("") String issuerName) {
+		System.out.println("in getBond() function!");
+		if (!issuerName.equals("")) {
+			List<Bond> bond = bean.getBondByIssuerName(issuerName);
+			return bond;
+		} else
+			return bean.getAllBonds();
+	}
+	
+	@GET
+	@Produces("application/json")
+	@Path("/allBondsByCustomSearch")
+	public List<Bond> getBond(@QueryParam("isin") @DefaultValue("%") String isin, @QueryParam("coupon_Period") @DefaultValue("%") String coupon_Period,
+			@QueryParam("fitch") @DefaultValue("%") String fitch) {
+		if(isin.equals("%") && coupon_Period.equals("%") && fitch.equals("%")){
+			return bean.getAllBonds();
+		}else return bean.getBondByCouponPeriodAndFitchRevised(isin, coupon_Period, fitch); 
+		}
 	
 	@POST
 	@Consumes("application/json")

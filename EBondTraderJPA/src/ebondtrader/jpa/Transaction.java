@@ -22,6 +22,8 @@ public class Transaction implements Serializable {
 
 	private BigDecimal cleanPrice;
 
+	private int customerID;
+
 	private BigDecimal dirtyPrice;
 
 	private String isin;
@@ -36,15 +38,6 @@ public class Transaction implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date tradeDate;
-
-	
-	public Date getTradeDate() {
-		return tradeDate;
-	}
-
-	public void setTradeDate(Date tradeDate) {
-		this.tradeDate = tradeDate;
-	}
 
 	private BigDecimal tradeYield;
 
@@ -73,6 +66,14 @@ public class Transaction implements Serializable {
 
 	public void setCleanPrice(BigDecimal cleanPrice) {
 		this.cleanPrice = cleanPrice;
+	}
+
+	public int getCustomerID() {
+		return this.customerID;
+	}
+
+	public void setCustomerID(int customerID) {
+		this.customerID = customerID;
 	}
 
 	public BigDecimal getDirtyPrice() {
@@ -113,6 +114,14 @@ public class Transaction implements Serializable {
 
 	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public Date getTradeDate() {
+		return this.tradeDate;
+	}
+
+	public void setTradeDate(Date tradeDate) {
+		this.tradeDate = tradeDate;
 	}
 
 	public BigDecimal getTradeYield() {

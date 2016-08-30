@@ -11,8 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ebondtrader.jpa.Bond;
-import ebondtrader.jpa.Categories;
-import ebondtrader.jpa.Products;
+
 import ebondtrader.jpa.Transaction;
 
 /**
@@ -79,6 +78,14 @@ public List<Bond> getBondByIsin(String isin) {
 
 }
 
+public List<Bond> getBondByCouponPeriodAndFitchRevised(String isin, String coupon_Period, String fitch) {
+	String sql = "SELECT eb FROM Bond AS eb WHERE eb.couponPeriod LIKE '" + coupon_Period + "'" + "AND eb.fitch LIKE '%" + fitch +"%'" + "AND eb.isin LIKE '%" + isin+"%'";
+	System.out.println("in Revised method.");
+	TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
+	List<Bond> bond = (List<Bond>) myquery.getResultList();
+	return bond;
+}
+
 
 public List<Bond> getBondByCouponPeriod(String coupon_Period) {
 	String sql = "SELECT eb FROM Bond AS eb WHERE eb.couponPeriod = '" + coupon_Period + "'";
@@ -88,7 +95,14 @@ public List<Bond> getBondByCouponPeriod(String coupon_Period) {
 	return bond;
 }
 	
-	
+
+public List<Bond> getBondByIssuerName(String issuerName) {
+	String sql = "SELECT eb FROM Bond AS eb WHERE eb.issuerName LIKE '%" + issuerName + "%'";
+	System.out.println("in getBondByCoupon");
+	TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
+	List<Bond> bond = (List<Bond>) myquery.getResultList();
+	return bond;
+}
 	
 	
 	
