@@ -7,12 +7,12 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @ApplicationPath("/rest")
-public class ExampleApplication extends Application {
+public class EBondRestApplication extends Application {
 	
 	private Set<Object> singletons=new HashSet<Object>();
 	private Set<Class<?>> empty=new HashSet<Class<?>>();
-	public ExampleApplication(){
-		singletons.add(new ProductResource());	
+	public EBondRestApplication(){
+		singletons.add(new BondResource());	
 	}
 	
 	@Override

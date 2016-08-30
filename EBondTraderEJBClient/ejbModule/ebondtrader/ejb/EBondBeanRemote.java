@@ -11,15 +11,17 @@ import ebondtrader.jpa.Transaction;
 
 @Remote
 public interface EBondBeanRemote {
-	public void addCategoriesAndProducts();
-	public List<Products> getProductsInCategory(String categoryName);
 	
-	public List<Products> getProducts();
+	
+	
 	public void printing();
-	public List<Products> getProductsByName(String name);
+
 	public List<Bond> getAllBonds();
 	public void getTransactions(Transaction t);
 	public List<Transaction> getAlltrs();
+	public List<Bond> getBondByIsin(String isin);
+	public List<Bond> getBondByCouponPeriod(String coupon_Period);
+	public List<Bond> getAllBondsByDate();
 	//public int getOrderid();
 	
 	//public void addBonds(Bond2 b2);

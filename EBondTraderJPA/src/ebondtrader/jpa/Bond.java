@@ -2,6 +2,7 @@ package ebondtrader.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -13,15 +14,12 @@ import javax.persistence.*;
 public class Bond implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private int id;
+	private int bondDuration;
 
-	private float change;
+	private float changePrice;
 
-	@Column(name="`Coupon Period`")
 	private String couponPeriod;
 
-	@Column(name="`Coupon Rate`")
 	private float couponRate;
 
 	private String currency;
@@ -30,64 +28,64 @@ public class Bond implements Serializable {
 
 	private float high;
 
+	@Id
+	private int id;
+
 	private String isin;
 
-	@Column(name="`Issuer Name`")
 	private String issuerName;
 
-	private float last;
+	private float lastPrice;
 
 	private float low;
 
-	@Column(name="`Maturity Date`")
-	private String maturityDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date maturityDate;
 
-	@Column(name="`Moody's`")
-	private String moodyS;
+	private String moodys;
 
-	private int pieceSize;
+	private float pieceSize;
 
-	@Column(name="`S&P`")
-	private String sp;
+	private String snP;
 
-	@Column(name="`Start Date`")
-	private String startDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date startDate;
 
-	private float yield;
+	private float currentYield;
 
 	public Bond() {
 	}
 
-	public int getId() {
-		return this.id;
+	public int getBondDuration() {
+		return this.bondDuration;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setBondDuration(int bondDuration) {
+		this.bondDuration = bondDuration;
 	}
 
-	public float getChange() {
-		return this.change;
+	public float getChangePrice() {
+		return this.changePrice;
 	}
 
-	public void setChange(float change) {
-		this.change = change;
+	public void setChangePrice(float changePrice) {
+		this.changePrice = changePrice;
 	}
 
-	public String getCoupon_Period() {
+	public String getCouponPeriod() {
 		return this.couponPeriod;
 	}
 
-	public void setCoupon_Period(String coupon_Period) {
-		this.couponPeriod = coupon_Period;
+	public void setCouponPeriod(String couponPeriod) {
+		this.couponPeriod = couponPeriod;
 	}
 
-	public float getCoupon_Rate() {
+	public float getCouponRate() {
 		return this.couponRate;
 	}
 
-	public void setCoupon_Rate(float coupon_Rate) {
-		this.couponRate = coupon_Rate;
+	public void setCouponRate(float couponRate) {
+		this.couponRate = couponRate;
 	}
 
 	public String getCurrency() {
@@ -114,6 +112,14 @@ public class Bond implements Serializable {
 		this.high = high;
 	}
 
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getIsin() {
 		return this.isin;
 	}
@@ -122,20 +128,20 @@ public class Bond implements Serializable {
 		this.isin = isin;
 	}
 
-	public String getIssuer_Name() {
+	public String getIssuerName() {
 		return this.issuerName;
 	}
 
-	public void setIssuer_Name(String issuer_Name) {
-		this.issuerName = issuer_Name;
+	public void setIssuerName(String issuerName) {
+		this.issuerName = issuerName;
 	}
 
-	public float getLast() {
-		return this.last;
+	public float getLastPrice() {
+		return this.lastPrice;
 	}
 
-	public void setLast(float last) {
-		this.last = last;
+	public void setLastPrice(float lastPrice) {
+		this.lastPrice = lastPrice;
 	}
 
 	public float getLow() {
@@ -146,52 +152,52 @@ public class Bond implements Serializable {
 		this.low = low;
 	}
 
-	public String getMaturity_Date() {
+	public Date getMaturityDate() {
 		return this.maturityDate;
 	}
 
-	public void setMaturity_Date(String maturity_Date) {
-		this.maturityDate = maturity_Date;
+	public void setMaturityDate(Date maturityDate) {
+		this.maturityDate = maturityDate;
 	}
 
-	public String getMoody_s() {
-		return this.moodyS;
+	public String getMoodys() {
+		return this.moodys;
 	}
 
-	public void setMoody_s(String moody_s) {
-		this.moodyS = moody_s;
+	public void setMoodys(String moodys) {
+		this.moodys = moodys;
 	}
 
-	public int getPieceSize() {
+	public float getPieceSize() {
 		return this.pieceSize;
 	}
 
-	public void setPieceSize(int pieceSize) {
+	public void setPieceSize(float pieceSize) {
 		this.pieceSize = pieceSize;
 	}
 
-	public String getS_p() {
-		return this.sp;
+	public String getSnP() {
+		return this.snP;
 	}
 
-	public void setS_p(String s_p) {
-		this.sp = s_p;
+	public void setSnP(String snP) {
+		this.snP = snP;
 	}
 
-	public String getStart_Date() {
+	public Date getStartDate() {
 		return this.startDate;
 	}
 
-	public void setStart_Date(String start_Date) {
-		this.startDate = start_Date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	public float getYield() {
-		return this.yield;
+		return this.currentYield;
 	}
 
 	public void setYield(float yield) {
-		this.yield = yield;
+		this.currentYield = yield;
 	}
 
 }

@@ -35,14 +35,9 @@ public class Main {
 				String fullJndiName = String.format("%s/%s/%s!%s.%s", appName, moduleName, beanName, packageName, className);
 				EBondBeanRemote bean = (EBondBeanRemote) context.lookup("EBondTrader/EBondTraderEJB/EBondBean!ebondtrader.ejb.EBondBeanRemote");
 				System.out.println("second");
-				//bean.addCategoriesAndProducts();
+				
 				bean.printing();
-				//bean.addCategoriesAndProducts();
-				//Products p=bean.getProductsByName("Pepsi");
-				//System.out.println(p.getProductID());
-				//List<Products> p=bean.getProducts();
-				//List<Products> p1=bean.getProductsByName("jers");
-				List<Products> p1=bean.getProductsInCategory("sports");
+				
 				}
 				
 				catch(Exception e){		

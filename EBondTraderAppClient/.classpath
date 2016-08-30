@@ -15,6 +15,6 @@
 	<classpathentry kind="lib" path="C:/Grad software 2016/Java Tools/wildfly-10.0.0.Final/wildfly-10.0.0.Final/bin/client/jboss-client.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EBondTraderEJBClient"/>
 	<classpathentry kind="lib" path="C:/JavaEEJBossDev/Databases/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar"/>
-	<classpathentry kind="lib" path="C:/JavaEEJBossDev/Databases/hibernate-core-4.3.9.Final.jar"/>
+	<classpathentry kind="lib" path="C:/JavaEEJBossDev/Databases/hibernate-core-4.3.9.Final.jar" sourcepath="C:/Users/Grad136/.m2/repository/org/hibernate/hibernate-core/4.3.9.Final/hibernate-core-4.3.9.Final-sources.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

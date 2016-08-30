@@ -34,6 +34,18 @@ public class Transaction implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeStamp;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date tradeDate;
+
+	
+	public Date getTradeDate() {
+		return tradeDate;
+	}
+
+	public void setTradeDate(Date tradeDate) {
+		this.tradeDate = tradeDate;
+	}
+
 	private BigDecimal tradeYield;
 
 	public Transaction() {
