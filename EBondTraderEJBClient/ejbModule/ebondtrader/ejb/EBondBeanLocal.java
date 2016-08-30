@@ -22,6 +22,8 @@ public interface EBondBeanLocal {
 	public List<Bond> getBondByIsin(String isin);
 	public List<Bond> getBondByCouponPeriod(String coupon_Period);
 	public List<Bond> getAllBondsByDate();
+	public List<Bond> getBondBeforeMaturityDate(String filter);
+	public List<Bond> getBondAfterMaturityDate(String filter);
 	//public int getOrderid();
 	//public void addBonds(Bond2 b2);
 

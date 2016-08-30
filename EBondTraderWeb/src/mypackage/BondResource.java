@@ -20,76 +20,66 @@ import ebondtrader.jpa.Bond;
 import ebondtrader.jpa.Products;
 import ebondtrader.jpa.Transaction;
 
-
-
 @Path("/bond")
 public class BondResource {
-	
-	
-	Context context=null;
+
+	Context context = null;
 	EBondBeanLocal bean;
-	
-	BondResource(){
-		try{
-			context=new InitialContext();
-			bean=(EBondBeanLocal)context.lookup("java:app/EBondTraderEJB/EBondBean!ebondtrader.ejb.EBondBeanLocal");
-		}
-		catch(Exception e){
+
+	BondResource() {
+		try {
+			context = new InitialContext();
+			bean = (EBondBeanLocal) context.lookup("java:app/EBondTraderEJB/EBondBean!ebondtrader.ejb.EBondBeanLocal");
+		} catch (Exception e) {
 			System.out.println("Error in creating bean");
 			e.printStackTrace();
 		}
-		
+
 	}
-	
 
 	@GET
 	@Produces("application/json")
-	public List<Bond> ret1Bond(){
-		List<Bond> blist=bean.getAllBonds();
+	public List<Bond> ret1Bond() {
+		List<Bond> blist = bean.getAllBonds();
 		return blist;
-		
+
 	}
 
-	
 	@GET
 	@Produces("application/json")
 	@Path("/transhis")
-	public List<Transaction> retBond(){
-		List<Transaction> blist=bean.getAlltrs();
+	public List<Transaction> retBond() {
+		List<Transaction> blist = bean.getAlltrs();
 		return blist;
-		
+
 	}
-	
-	
+
 	@GET
 	@Produces("application/json")
 	@Path("/allBondsByDate")
-	public List<Bond> retBondByDate(){
-		List<Bond> blist=bean.getAllBondsByDate();
+	public List<Bond> retBondByDate() {
+		List<Bond> blist = bean.getAllBondsByDate();
 		return blist;
-		
+
 	}
-	
-	
+
 	@GET
 	@Produces("application/json")
-	 @Path("/allBondsByIsin")
-	public List<Bond> getBonds(@QueryParam("isin")@DefaultValue("") String
-	 isin){
-	
-	// if(bean==null)
-	// return null;
-	 if(!isin.equals("")){
-		System.out.println("in getBonds() function!");
-	 List<Bond> bonds = bean.getBondByIsin(isin);
-	 return bonds;
-	
-	 }else {
-	  return bean.getAllBonds();	 
-	 }
-	 }
+	@Path("/allBondsByIsin")
+	public List<Bond> getBonds(@QueryParam("isin") @DefaultValue("") String isin) {
 
-	
+		// if(bean==null)
+		// return null;
+		if (!isin.equals("")) {
+			System.out.println("in getBonds() function!");
+			List<Bond> bonds = bean.getBondByIsin(isin);
+			return bonds;
+
+		} else {
+			return bean.getAllBonds();
+		}
+	}
+
 	@GET
 	@Produces("application/json")
 	@Path("/allBondsByCouponPeriod")
@@ -101,17 +91,47 @@ public class BondResource {
 			return bean.getAllBonds();
 	}
 
-	
-	
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
 	@Path("/trans")
-	public void updateHistory(Transaction t1){
+	public void updateHistory(Transaction t1) {
 		System.out.println("Adding a new transaction");
 		bean.getTransactions(t1);
 	}
 	
+	@GET
+	@Produces("application/json")
+	@Path("/after")
+	public List<Bond> getBondsAfterMaturity(@QueryParam("filter") @DefaultValue("") String filter) {
+
+		// if(bean==null)
+		// return null;
+		if (!filter.equals("")) {
+			System.out.println("in getBonds() function!");
+			List<Bond> bonds = bean.getBondAfterMaturityDate(filter);
+			return bonds;
+
+		} else {
+			return bean.getAllBonds();
+		}
+	}
 	
+	@GET
+	@Produces("application/json")
+	@Path("/before")
+	public List<Bond> getBondsBeforeMaturity(@QueryParam("filter") @DefaultValue("") String filter) {
+
+		// if(bean==null)
+		// return null;
+		if (!filter.equals("")) {
+			System.out.println("in getBonds() function!");
+			List<Bond> bonds = bean.getBondBeforeMaturityDate(filter);
+			return bonds;
+
+		} else {
+			return bean.getAllBonds();
+		}
+	}
 
 }

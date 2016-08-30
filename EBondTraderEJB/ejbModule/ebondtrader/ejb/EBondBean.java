@@ -22,96 +22,80 @@ import ebondtrader.jpa.Transaction;
 @Local(EBondBeanLocal.class)
 @Stateless
 public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
-	
-	@PersistenceContext(unitName="EBondTraderJPA-PU")
+
+	@PersistenceContext(unitName = "EBondTraderJPA-PU")
 	EntityManager em;
-    /**
-     * Default constructor. 
-     */
-	
 
+	/**
+	 * Default constructor.
+	 */
 
-	
-	
-	
-	
-	
-	public void printing(){
+	public void printing() {
 		System.out.println("In Bean");
 	}
-	
-	
 
-	
-	
-	public List<Bond> getAllBondsByDate(){
-			return null;		
+	public List<Bond> getAllBondsByDate() {
+		return null;
 	}
-	
-	public void getTransactions(Transaction t){
+
+	public void getTransactions(Transaction t) {
 		em.persist(t);
 	}
-	
-public List<Bond> getAllBonds(){
-	TypedQuery <Bond>query=em.createQuery("Select p from Bond as p",Bond.class);
-	List<Bond> plist=(List<Bond>) query.getResultList();
-	
-	
-	return plist;
-		
+
+	public List<Bond> getAllBonds() {
+		TypedQuery<Bond> query = em.createQuery("Select p from Bond as p", Bond.class);
+		List<Bond> plist = (List<Bond>) query.getResultList();
+
+		return plist;
+
 	}
 
-public List<Transaction> getAlltrs(){
-	TypedQuery <Transaction>query=em.createQuery("Select p from Transaction as p",Transaction.class);
-	List<Transaction> plist=(List<Transaction>) query.getResultList();
-	
-	
-	return plist;
-		
+	public List<Transaction> getAlltrs() {
+		TypedQuery<Transaction> query = em.createQuery("Select p from Transaction as p", Transaction.class);
+		List<Transaction> plist = (List<Transaction>) query.getResultList();
+
+		return plist;
+
 	}
 
-public List<Bond> getBondByIsin(String isin) {
+	public List<Bond> getBondByIsin(String isin) {
 
-	String sql = "SELECT eb FROM Bond AS eb WHERE eb.isin LIKE '%" + isin + "%'";
-	TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
-	List<Bond> bond = (List<Bond>) myquery.getResultList();
-	return bond;
+		String sql = "SELECT eb FROM Bond AS eb WHERE eb.isin LIKE '%" + isin + "%'";
+		TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
+		List<Bond> bond = (List<Bond>) myquery.getResultList();
+		return bond;
 
-}
+	}
 
+	public List<Bond> getBondByCouponPeriod(String coupon_Period) {
+		String sql = "SELECT eb FROM Bond AS eb WHERE eb.couponPeriod = '" + coupon_Period + "'";
+		System.out.println("in getBondByCoupon");
+		TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
+		List<Bond> bond = (List<Bond>) myquery.getResultList();
+		return bond;
+	}
+	
+	public List<Bond> getBondAfterMaturityDate(String filter) {
 
-public List<Bond> getBondByCouponPeriod(String coupon_Period) {
-	String sql = "SELECT eb FROM Bond AS eb WHERE eb.couponPeriod = '" + coupon_Period + "'";
-	System.out.println("in getBondByCoupon");
-	TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
-	List<Bond> bond = (List<Bond>) myquery.getResultList();
-	return bond;
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-    /**
-     * Default constructor. 
-     */
-    public EBondBean() {
-        // TODO Auto-generated constructor stub
-    }
+		String sql = "SELECT eb FROM Bond AS eb WHERE eb.maturityDate >= '" + filter + "'";
+		TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
+		List<Bond> bond = (List<Bond>) myquery.getResultList();
+		return bond;
 
+	}
+	public List<Bond> getBondBeforeMaturityDate(String filter) {
 
+		String sql = "SELECT eb FROM Bond AS eb WHERE eb.maturityDate <= '" + filter + "'";
+		TypedQuery<Bond> myquery = em.createQuery(sql, Bond.class);
+		List<Bond> bond = (List<Bond>) myquery.getResultList();
+		return bond;
 
-
-
-	
-
-	
-
+	}
+	/**
+	 * Default constructor.
+	 */
+	public EBondBean() {
+		// TODO Auto-generated constructor stub
+	}
 
 }
