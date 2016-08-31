@@ -14,9 +14,10 @@ import java.util.Date;
 public class Bond implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int bondDuration;
 	@Id
-	private int bondID;
+	private int id;
+
+	private int bondDuration;
 
 	private float changePrice;
 
@@ -47,12 +48,20 @@ public class Bond implements Serializable {
 
 	private float pieceSize;
 
-	private String snP;
+	private String snp;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
 
 	public Bond() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getBondDuration() {
@@ -61,14 +70,6 @@ public class Bond implements Serializable {
 
 	public void setBondDuration(int bondDuration) {
 		this.bondDuration = bondDuration;
-	}
-
-	public int getBondID() {
-		return this.bondID;
-	}
-
-	public void setBondID(int bondID) {
-		this.bondID = bondID;
 	}
 
 	public float getChangePrice() {
@@ -183,12 +184,12 @@ public class Bond implements Serializable {
 		this.pieceSize = pieceSize;
 	}
 
-	public String getSnP() {
-		return this.snP;
+	public String getSnp() {
+		return this.snp;
 	}
 
-	public void setSnP(String snP) {
-		this.snP = snP;
+	public void setSnp(String snp) {
+		this.snp = snp;
 	}
 
 	public Date getStartDate() {

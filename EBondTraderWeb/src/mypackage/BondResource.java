@@ -6,12 +6,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
@@ -20,127 +17,123 @@ import ebondtrader.jpa.Bond;
 import ebondtrader.jpa.Customer;
 import ebondtrader.jpa.Transaction;
 
-
-
 @Path("/bond")
 public class BondResource {
-	
-	
-	Context context=null;
+
+	Context context = null;
 	EBondBeanLocal bean;
-	
-	BondResource(){
-		try{
-			context=new InitialContext();
-			bean=(EBondBeanLocal)context.lookup("java:app/EBondTraderEJB/EBondBean!ebondtrader.ejb.EBondBeanLocal");
-		}
-		catch(Exception e){
+
+	BondResource() {
+		try {
+			context = new InitialContext();
+			bean = (EBondBeanLocal) context.lookup("java:app/EBondTraderEJB/EBondBean!ebondtrader.ejb.EBondBeanLocal");
+		} catch (Exception e) {
 			System.out.println("Error in creating bean");
 			e.printStackTrace();
 		}
-		
+
 	}
-	
 
 	@GET
 	@Produces("application/json")
-	public List<Bond> ret1Bond(){
-		List<Bond> blist=bean.getAllBonds();
+	public List<Bond> ret1Bond() {
+		List<Bond> blist = bean.getAllBonds();
 		return blist;
-		
+
 	}
 
-	
 	@GET
 	@Produces("application/json")
 	@Path("/transhis")
-	public List<Transaction> retBond(){
-		List<Transaction> blist=bean.getAlltrs();
+	public List<Transaction> retBond() {
+		List<Transaction> blist = bean.getOrderHistory();
 		return blist;
-		
-	}
-	
-	
-	@GET
-	@Produces("application/json")
-	@Path("/allBondsByDate")
-	public List<Bond> retBondByDate(){
-		List<Bond> blist=bean.getAllBondsByDate();
-		return blist;
-		
-	}
-	
-	
-	@GET
-	@Produces("application/json")
-	 @Path("/allBondsByIsin")
-	public List<Bond> getBonds(@QueryParam("isin")@DefaultValue("") String
-	 isin){
-	
-	// if(bean==null)
-	// return null;
-	 if(!isin.equals("")){
-		System.out.println("in getBonds() function!");
-	 List<Bond> bonds = bean.getBondByIsin(isin);
-	 return bonds;
-	
-	 }else {
-	  return bean.getAllBonds();	 
-	 }
-	 }
 
-	
-	@GET
-	@Produces("application/json")
-	@Path("/allBondsByCouponPeriod")
-	public List<Bond> getBond(@QueryParam("coupon_Period") @DefaultValue("") String coupon_Period) {
-		if (!coupon_Period.equals("")) {
-			List<Bond> bond = bean.getBondByCouponPeriod(coupon_Period);
-			return bond;
-		} else
-			return bean.getAllBonds();
 	}
 
-	
-	@GET
-	@Produces("application/json")
-	@Path("/allBondsByIssuerName")
-	public List<Bond> getBondByIssuer(@QueryParam("issuerName")@DefaultValue("") String issuerName) {
-		System.out.println("in getBond() function!");
-		if (!issuerName.equals("")) {
-			List<Bond> bond = bean.getBondByIssuerName(issuerName);
-			return bond;
-		} else
-			return bean.getAllBonds();
-	}
-	
+	// @GET
+	// @Produces("application/json")
+	// @Path("/allBondsByDate")
+	// public List<Bond> retBondByDate(){
+	// List<Bond> blist=bean.getAllBondsByDate();
+	// return blist;
+	//
+	// }
+
+	// @GET
+	// @Produces("application/json")
+	// @Path("/allBondsByIsin")
+	// public List<Bond> getBonds(@QueryParam("isin")@DefaultValue("") String
+	// isin){
+	//
+	// // if(bean==null)
+	// // return null;
+	// if(!isin.equals("")){
+	// System.out.println("in getBonds() function!");
+	// List<Bond> bonds = bean.getBondByIsin(isin);
+	// return bonds;
+	//
+	// }else {
+	// return bean.getAllBonds();
+	// }
+	// }
+
+	// @GET
+	// @Produces("application/json")
+	// @Path("/allBondsByCouponPeriod")
+	// public List<Bond> getBond(@QueryParam("couponPeriod") @DefaultValue("")
+	// String couponPeriod) {
+	// if (!couponPeriod.equals("")) {
+	// List<Bond> bond = bean.getBondByCouponPeriod(couponPeriod);
+	// return bond;
+	// } else
+	// return bean.getAllBonds();
+	// }
+
+	// @GET
+	// @Produces("application/json")
+	// @Path("/allBondsByIssuerName")
+	// public List<Bond>
+	// getBondByIssuer(@QueryParam("issuerName")@DefaultValue("") String
+	// issuerName) {
+	// System.out.println("in getBond() function!");
+	// if (!issuerName.equals("")) {
+	// List<Bond> bond = bean.getBondByIssuerName(issuerName);
+	// return bond;
+	// } else
+	// return bean.getAllBonds();
+	// }
+	// Filter for searching ISIN,Coupon Period, Fitch, Moodys,Snp and Issuer
+	// name
 	@GET
 	@Produces("application/json")
 	@Path("/allBondsByCustomSearch")
-	public List<Bond> getBond(@QueryParam("isin") @DefaultValue("%") String isin, @QueryParam("coupon_Period") @DefaultValue("%") String coupon_Period,
-			@QueryParam("fitch") @DefaultValue("%") String fitch) {
-		if(isin.equals("%") && coupon_Period.equals("%") && fitch.equals("%")){
+	public List<Bond> getBond(@QueryParam("isin") @DefaultValue("%") String isin,
+			@QueryParam("couponPeriod") @DefaultValue("%") String couponPeriod,
+			@QueryParam("fitch") @DefaultValue("%") String fitch,
+			@QueryParam("moodys") @DefaultValue("%") String moodys, @QueryParam("snp") @DefaultValue("%") String snp,
+			@QueryParam("issuerName") @DefaultValue("%") String issuerName) {
+		if (isin.equals("%") && couponPeriod.equals("%") && fitch.equals("%") && moodys.equals("%") && snp.equals("%")
+				&& issuerName.equals("%")) {
 			return bean.getAllBonds();
-		}else return bean.getBondByCouponPeriodAndFitchRevised(isin, coupon_Period, fitch); 
-		}
-	
-	
+		} else
+			return bean.getBondByFilter(isin, couponPeriod, fitch, moodys, snp, issuerName);
+	}
+
 	@GET
 	@Produces("application/json")
 	@Path("/allCustomers")
-	public List<Customer> getAllCustomer(){
+	public List<Customer> getAllCustomer() {
 		return bean.getCustomer();
 	}
-	
+
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
 	@Path("/trans")
-	public void updateHistory(Transaction t1){
+	public void updateHistory(Transaction t1) {
 		System.out.println("Adding a new transaction");
-		bean.getTransactions(t1);
+		bean.updateHistory(t1);
 	}
-	
-	
 
 }

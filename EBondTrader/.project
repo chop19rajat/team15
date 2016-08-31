@@ -6,8 +6,8 @@
 		<project>EBondTraderJPA</project>
 		<project>EBondTraderEJB</project>
 		<project>EBondTraderEJBClient</project>
-		<project>EBondTraderAppClient</project>
 		<project>EBondTraderWeb</project>
+		<project>EBondTraderAppClient</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

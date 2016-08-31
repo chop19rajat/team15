@@ -11,11 +11,11 @@
         <dependent-module archiveName="EBondTraderEJBClient.jar" deploy-path="/" handle="module:/resource/EBondTraderEJBClient/EBondTraderEJBClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="EBondTraderAppClient.jar" deploy-path="/" handle="module:/resource/EBondTraderAppClient/EBondTraderAppClient">
+        <dependent-module archiveName="EBondTraderWeb.war" deploy-path="/" handle="module:/resource/EBondTraderWeb/EBondTraderWeb">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="EBondTraderWeb.war" deploy-path="/" handle="module:/resource/EBondTraderWeb/EBondTraderWeb">
+        <dependent-module archiveName="EBondTraderAppClient.jar" deploy-path="/" handle="module:/resource/EBondTraderAppClient/EBondTraderAppClient">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>

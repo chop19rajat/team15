@@ -22,11 +22,11 @@ public class Transaction implements Serializable {
 
 	private BigDecimal cleanPrice;
 
-	private int customerID;
-
 	private BigDecimal dirtyPrice;
 
 	private String isin;
+
+	private int quantity;
 
 	private BigDecimal settlementAmount;
 
@@ -68,14 +68,6 @@ public class Transaction implements Serializable {
 		this.cleanPrice = cleanPrice;
 	}
 
-	public int getCustomerID() {
-		return this.customerID;
-	}
-
-	public void setCustomerID(int customerID) {
-		this.customerID = customerID;
-	}
-
 	public BigDecimal getDirtyPrice() {
 		return this.dirtyPrice;
 	}
@@ -90,6 +82,14 @@ public class Transaction implements Serializable {
 
 	public void setIsin(String isin) {
 		this.isin = isin;
+	}
+
+	public int getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public BigDecimal getSettlementAmount() {
