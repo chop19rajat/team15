@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import ebondtrader.jpa.Bond;
@@ -103,7 +104,14 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
 			return bond;
 		}
 	}
-
+	
+	// Canceling order
+	
+	public void cancelOrder(int orderId){
+		String sql="UPDATE Transaction AS t SET status='Canceled' where t.orderId='"+orderId+"'";
+		Query myquery = em.createQuery(sql);
+		myquery.executeUpdate();
+	}
 	// Filter to search bond by coupon period
 
 	/*

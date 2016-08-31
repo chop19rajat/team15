@@ -33,6 +33,8 @@ public class Transaction implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date settlementDate;
 
+	private String status;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeStamp;
 
@@ -106,6 +108,14 @@ public class Transaction implements Serializable {
 
 	public void setSettlementDate(Date settlementDate) {
 		this.settlementDate = settlementDate;
+	}
+
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getTimeStamp() {
