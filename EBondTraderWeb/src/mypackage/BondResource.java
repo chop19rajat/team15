@@ -41,6 +41,14 @@ public class BondResource {
 		return blist;
 
 	}
+	@GET
+	@Produces("text/plain")
+	@Path("/test")
+	public String test() {
+		
+		return "Connection Done";
+
+	}
 
 	@GET
 	@Produces("application/json")
@@ -112,12 +120,12 @@ public class BondResource {
 			@QueryParam("couponPeriod") @DefaultValue("%") String couponPeriod,
 			@QueryParam("fitch") @DefaultValue("%") String fitch,
 			@QueryParam("moodys") @DefaultValue("%") String moodys, @QueryParam("snp") @DefaultValue("%") String snp,
-			@QueryParam("issuerName") @DefaultValue("%") String issuerName) {
+			@QueryParam("issuerName") @DefaultValue("%") String issuerName,@QueryParam("currentYield") @DefaultValue("%") String currentYield) {
 		if (isin.equals("%") && couponPeriod.equals("%") && fitch.equals("%") && moodys.equals("%") && snp.equals("%")
-				&& issuerName.equals("%")) {
+				&& issuerName.equals("%") && currentYield.toString().equals("%")) {
 			return bean.getAllBonds();
 		} else
-			return bean.getBondByFilter(isin, couponPeriod, fitch, moodys, snp, issuerName);
+			return bean.getBondByFilter(isin, couponPeriod, fitch, moodys, snp, issuerName,currentYield);
 	}
 
 	@GET

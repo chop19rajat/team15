@@ -14,7 +14,7 @@ public interface EBondBeanRemote {
 	
 	
 	public List<Customer> getCustomer();
-	public List<Bond> getBondByFilter(String isin, String couponPeriod, String fitch,String moodys,String snp,String issuerName);
+	public List<Bond> getBondByFilter(String isin, String couponPeriod, String fitch,String moodys,String snp,String issuerName,String currentYield);
 	public List<Bond> getAllBonds();
 	public void updateHistory(Transaction t);
 	public List<Transaction> getOrderHistory();
