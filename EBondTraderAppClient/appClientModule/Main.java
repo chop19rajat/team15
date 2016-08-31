@@ -5,7 +5,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import ebondtrader.ejb.EBondBeanRemote;
-import ebondtrader.jpa.Products;
+
 
 public class Main {
 	public static void main(String[] args) {

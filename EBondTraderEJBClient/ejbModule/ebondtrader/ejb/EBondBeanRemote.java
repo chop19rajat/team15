@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import ebondtrader.jpa.Bond;
-
+import ebondtrader.jpa.Customer;
 import ebondtrader.jpa.Transaction;
 
 
@@ -13,7 +13,7 @@ import ebondtrader.jpa.Transaction;
 public interface EBondBeanRemote {
 	
 	
-	
+	public List<Customer> getCustomer();
 	public void printing();
 	public List<Bond> getBondByCouponPeriodAndFitchRevised(String isin, String coupon_Period, String fitch);
 	public List<Bond> getAllBonds();

@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ebondtrader.jpa.Bond;
-
+import ebondtrader.jpa.Customer;
 import ebondtrader.jpa.Transaction;
 
 /**
@@ -68,6 +68,14 @@ public List<Transaction> getAlltrs(){
 	return plist;
 		
 	}
+
+public List<Customer> getCustomer(){
+	TypedQuery <Customer>query=em.createQuery("Select p from Customer as p",Customer.class);
+	List<Customer> customerList=(List<Customer>) query.getResultList();
+	return customerList;
+	
+}
+
 
 public List<Bond> getBondByIsin(String isin) {
 

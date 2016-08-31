@@ -4,6 +4,7 @@
 	 <jta-data-source>java:jboss/datasources/mydatabaseDS</jta-data-source>
 	 <class>ebondtrader.jpa.Bond</class>
 	 <class>ebondtrader.jpa.Transaction</class>
+	 <class>ebondtrader.jpa.Customer</class>
 	</persistence-unit>
 </persistence>
 

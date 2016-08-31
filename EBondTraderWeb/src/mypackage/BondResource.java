@@ -17,7 +17,7 @@ import javax.ws.rs.QueryParam;
 
 import ebondtrader.ejb.EBondBeanLocal;
 import ebondtrader.jpa.Bond;
-
+import ebondtrader.jpa.Customer;
 import ebondtrader.jpa.Transaction;
 
 
@@ -123,6 +123,14 @@ public class BondResource {
 			return bean.getAllBonds();
 		}else return bean.getBondByCouponPeriodAndFitchRevised(isin, coupon_Period, fitch); 
 		}
+	
+	
+	@GET
+	@Produces("application/json")
+	@Path("/allCustomers")
+	public List<Customer> getAllCustomer(){
+		return bean.getCustomer();
+	}
 	
 	@POST
 	@Consumes("application/json")
