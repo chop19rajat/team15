@@ -108,7 +108,7 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
 	// Canceling order
 	
 	public void cancelOrder(int orderId){
-		String sql="UPDATE Transaction AS t SET status='Canceled' where t.orderId='"+orderId+"'";
+		String sql="UPDATE Transaction AS t SET status='Cancelled' where t.orderId='"+orderId+"'";
 		Query myquery = em.createQuery(sql);
 		myquery.executeUpdate();
 	}
