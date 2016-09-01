@@ -22,6 +22,8 @@ public class Transaction implements Serializable {
 
 	private BigDecimal cleanPrice;
 
+	private String customerId;
+
 	private BigDecimal dirtyPrice;
 
 	private String isin;
@@ -68,6 +70,14 @@ public class Transaction implements Serializable {
 
 	public void setCleanPrice(BigDecimal cleanPrice) {
 		this.cleanPrice = cleanPrice;
+	}
+
+	public String getCustomerId() {
+		return this.customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
 	public BigDecimal getDirtyPrice() {
