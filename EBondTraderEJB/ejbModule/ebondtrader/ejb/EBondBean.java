@@ -127,28 +127,21 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
 	}
 	// Filter to search bond by coupon period
 
-	/*
-	 * public List<Bond> getBondByCouponPeriod(String couponPeriod) { String sql
-	 * = "SELECT eb FROM Bond AS eb WHERE eb.couponPeriod = '" + couponPeriod +
-	 * "'"; System.out.println("in getBondByCoupon"); TypedQuery<Bond> myquery =
-	 * em.createQuery(sql, Bond.class); List<Bond> bond = (List<Bond>)
-	 * myquery.getResultList(); return bond; }
-	 */
 
-	// Filter to search bond by issuer name
-	/*
-	 * public List<Bond> getBondByIssuerName(String issuerName) { String sql =
-	 * "SELECT eb FROM Bond AS eb WHERE eb.issuerName LIKE '%" + issuerName +
-	 * "%'"; System.out.println("in getBondByCoupon"); TypedQuery<Bond> myquery
-	 * = em.createQuery(sql, Bond.class); List<Bond> bond = (List<Bond>)
-	 * myquery.getResultList(); return bond; }
-	 */
+
 
 	/**
 	 * Default constructor.
 	 */
 	public EBondBean() {
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public List<Transaction> getTransactionByFilter(String isin, String customerId) {
+		String sql = "Select t from Transaction AS t where t.customerId = '" + customerId + "' AND t.isin LIKE '" + isin + "'";
+		TypedQuery<Transaction> query = em.createQuery(sql, Transaction.class);
+		return query.getResultList();
 	}
 
 	// @Override

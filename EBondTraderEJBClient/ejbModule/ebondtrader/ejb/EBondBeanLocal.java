@@ -21,7 +21,11 @@ public interface EBondBeanLocal {
 	public void updateHistory(Transaction t);
 	public List<Transaction> getOrderHistory();
 	public void cancelOrder(int orderId);
+
 	public Boolean checkCustomer(String customerId);
+
+	public List<Transaction> getTransactionByFilter(String isin, String customerId);
+
 	//public List<Bond> getBondByIsin(String isin);
 	//public List<Bond> getBondByCouponPeriod(String couponPeriod);
 	//public List<Bond> getAllBondsByDate();

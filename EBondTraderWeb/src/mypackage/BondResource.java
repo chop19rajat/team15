@@ -129,7 +129,18 @@ public class BondResource {
 		} else
 			return bean.getBondByFilter(isin, couponPeriod, fitch, moodys, snp, issuerName,currentYield);
 	}
-
+	
+	@GET
+	@Produces("application/json")
+	@Path("/transactionSearch")
+	public List<Transaction> getTransaction(@QueryParam("isin") @DefaultValue("%") String isin,
+			@QueryParam("customerId") @DefaultValue("%") String customerId) {
+		if (isin.equals("%") && customerId.equals("%")) {
+			return bean.getOrderHistory();
+		} else
+			return bean.getTransactionByFilter(isin, customerId);
+	}
+	
 	@GET
 	@Produces("application/json")
 	@Path("/allCustomers")
