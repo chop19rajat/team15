@@ -15,7 +15,7 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int customerID;
+	private String customerId;
 
 	private String bankAcc;
 
@@ -30,12 +30,12 @@ public class Customer implements Serializable {
 	public Customer() {
 	}
 
-	public int getCustomerID() {
-		return this.customerID;
+	public String getCustomerId() {
+		return this.customerId;
 	}
 
-	public void setCustomerID(int customerID) {
-		this.customerID = customerID;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getBankAcc() {

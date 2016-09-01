@@ -16,6 +16,7 @@ import javax.ws.rs.QueryParam;
 import ebondtrader.ejb.EBondBeanLocal;
 import ebondtrader.jpa.Bond;
 import ebondtrader.jpa.Customer;
+
 import ebondtrader.jpa.Transaction;
 
 @Path("/bond")
@@ -135,6 +136,18 @@ public class BondResource {
 	public List<Customer> getAllCustomer() {
 		return bean.getCustomer();
 	}
+	
+	@GET
+	@Produces("text/plain")
+	@Consumes("application/json")
+	@Path("/customerCheck")
+	public String getValidityOfCustomer(@QueryParam("customerId") @DefaultValue("%") String customerId) {
+		if(bean.checkCustomer(customerId)){
+			return "yes";
+		}else {
+			return "no";
+		}
+	}
 
 	@POST
 	@Consumes("application/json")
@@ -149,7 +162,7 @@ public class BondResource {
 	@Produces("application/json")
 	@Path("/cancelOrder")
 	public void cancelOrder(Transaction t2) {
-		System.out.println("Adding a new transaction");
+		System.out.println("Cancelling a transaction");
 		bean.cancelOrder(t2.getOrderId());
 	}
 

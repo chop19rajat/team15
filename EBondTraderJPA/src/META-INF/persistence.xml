@@ -3,8 +3,8 @@
 	<persistence-unit name="EBondTraderJPA-PU" transaction-type="JTA">
 	 <jta-data-source>java:jboss/datasources/final</jta-data-source>
 	 <class>ebondtrader.jpa.Bond</class>
-	 <class>ebondtrader.jpa.Customer</class>
 	 <class>ebondtrader.jpa.Transaction</class>
+	 <class>ebondtrader.jpa.Customer</class>
 	</persistence-unit>
 </persistence>
 

@@ -33,7 +33,20 @@ public class EBondBean implements EBondBeanRemote, EBondBeanLocal {
 	public void updateHistory(Transaction t) {
 		em.persist(t);
 	}
-
+	public void updateCustomer(Customer c){
+		em.persist(c);
+	}
+	public Boolean checkCustomer(String customerId){
+		String sql="Select p from Customer as p where p.customerId='"+customerId+"'";
+		TypedQuery<Customer> query=em.createQuery(sql,Customer.class);
+		List<Customer> result=query.getResultList();
+		int count=result.size();
+		if(count==1){
+		return true;
+		}else {
+			return false;
+		}
+	}
 	// Get data from the database
 
 	public List<Bond> getAllBonds() {
